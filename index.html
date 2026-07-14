@@ -26,11 +26,11 @@
                     },
                     colors: {
                         brand: {
-                            light: '#faf8f5', // שמנת מרגיע
-                            pink: '#f472b6',  // ורוד רך
+                            light: '#faf8f5',
+                            pink: '#f472b6',
                             pinkHover: '#db2777',
-                            purple: '#f3eefc', // סגול פסטל
-                            dark: '#312e81',   // אינדיגו עמוק לטקסט
+                            purple: '#f3eefc',
+                            dark: '#312e81',
                         }
                     }
                 }
@@ -40,25 +40,37 @@
     <style>
         body {
             background-color: #faf8f5;
+            transition: all 0.3s ease;
         }
-        /* עיצוב לאקורדיון השאלות הנפוצות */
-        details > summary {
-            list-style: none;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #faf8f5; }
+        ::-webkit-scrollbar-thumb { background: #f472b6; border-radius: 10px; }
+        
+        /* Accessibility Classes */
+        .a11y-high-contrast {
+            background-color: #121212 !important;
+            color: #ffffff !important;
         }
-        details > summary::-webkit-details-marker {
-            display: none;
+        .a11y-high-contrast * {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
         }
-        /* הסתרת פס הגלילה ליופי */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .a11y-high-contrast img {
+            filter: grayscale(100%) contrast(120%);
         }
-        ::-webkit-scrollbar-track {
-            background: #faf8f5; 
+        .a11y-highlight-links a {
+            background-color: #ffff00 !important;
+            color: #000000 !important;
+            text-decoration: underline !important;
+            font-weight: bold !important;
+            padding: 2px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #f472b6; 
-            border-radius: 10px;
-        }
+        
+        /* Details Summary without arrow */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body class="text-gray-800 antialiased selection:bg-brand-pink selection:text-white">
@@ -69,19 +81,18 @@
             <a href="#" class="flex items-center gap-2 group">
                 <i class="fas fa-moon text-brand-pink text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
                 <div class="text-2xl font-extrabold text-brand-dark tracking-wide">
-                    חירות <span class="text-brand-pink text-base font-normal">| יועצת שינה</span>
+                    חירות <span class="text-brand-pink text-base font-normal hidden sm:inline-block">| יועצת שינה</span>
                 </div>
             </a>
             
-            <!-- Desktop Nav -->
             <nav class="hidden md:flex space-x-reverse space-x-8 font-semibold text-brand-dark">
-                <a href="#about" class="hover:text-brand-pink transition duration-300">הגישה שלי</a>
-                <a href="#testimonials" class="hover:text-brand-pink transition duration-300">המלצות</a>
-                <a href="#articles" class="hover:text-brand-pink transition duration-300">מאמרים</a>
-                <a href="#faq" class="hover:text-brand-pink transition duration-300">שאלות נפוצות</a>
+                <a href="#about" class="hover:text-brand-pink transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-pink rounded px-1">הגישה שלי</a>
+                <a href="#testimonials" class="hover:text-brand-pink transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-pink rounded px-1">המלצות</a>
+                <a href="#articles" class="hover:text-brand-pink transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-pink rounded px-1">מאמרים</a>
+                <a href="#faq" class="hover:text-brand-pink transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-pink rounded px-1">שאלות נפוצות</a>
             </nav>
             
-            <a href="#contact" class="hidden sm:inline-block bg-brand-pink hover:bg-brand-pinkHover text-white px-6 py-2.5 rounded-full font-bold text-sm transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+            <a href="#contact" class="bg-brand-pink hover:bg-brand-pinkHover text-white px-5 sm:px-6 py-2.5 rounded-full font-bold text-sm transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-pink-300">
                 בואי נדבר
             </a>
         </div>
@@ -104,26 +115,29 @@
                     בלי שיטות של בכי, בלי תסכולים. בגישה רכה, מכילה ומותאמת אישית לתינוק שלך, נחזיר את השקט והשינה לבית שלכם.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-                    <a href="https://wa.me/972500000000?text=היי%20חירות,%20הגעתי%20מהאתר%20ואשמח%20לפרטים" target="_blank" class="bg-brand-dark hover:bg-indigo-950 text-white px-8 py-3.5 rounded-full font-bold shadow-xl transition duration-300 text-center flex items-center justify-center gap-2 text-lg transform hover:-translate-y-1">
+                    <a href="https://wa.me/972500000000?text=היי%20חירות,%20הגעתי%20מהאתר%20ואשמח%20לפרטים" target="_blank" class="bg-brand-dark hover:bg-indigo-950 text-white px-8 py-3.5 rounded-full font-bold shadow-xl transition duration-300 text-center flex items-center justify-center gap-2 text-lg transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-300">
                         <i class="fab fa-whatsapp text-xl"></i> שיחת ייעוץ בוואטסאפ
                     </a>
                 </div>
             </div>
 
-            <!-- Image Container -->
+            <!-- Image Container with Fallback -->
             <div class="relative flex justify-center md:justify-end z-10 mt-8 md:mt-0">
                 <div class="relative w-72 h-72 md:w-[28rem] md:h-[28rem] rounded-full overflow-hidden border-8 border-white shadow-2xl group">
-                    <!-- מקום לתמונה שלך: cherut.jpg -->
-                    <img src="cherut.jpg" alt="חירות - יועצת שינה" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x600/f472b6/ffffff?text=תמונת+חירות';">
+                    <!-- תמונת הפרופיל שלך. אם הקובץ לא נמצא, תוצג תמונה חלופית מאנספלאש כדי שלא יופיע סימן שבור -->
+                    <img src="cherut.jpg" 
+                         alt="חירות - יועצת שינה" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=600&q=80';">
                 </div>
                 <!-- Decorative Blobs -->
-                <div class="absolute -top-6 -right-6 w-24 h-24 bg-brand-pink rounded-full blur-2xl opacity-40 mix-blend-multiply animate-pulse"></div>
-                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-indigo-400 rounded-full blur-3xl opacity-30 mix-blend-multiply"></div>
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-brand-pink rounded-full blur-2xl opacity-40 mix-blend-multiply animate-pulse pointer-events-none"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-indigo-400 rounded-full blur-3xl opacity-30 mix-blend-multiply pointer-events-none"></div>
             </div>
         </div>
         
         <!-- Bottom Wave SVG -->
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-12 md:h-20">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.42,120.3,192.21,109.2,236.33,101.4,281.33,78.2,321.39,56.44Z" fill="#faf8f5"></path>
             </svg>
@@ -176,12 +190,12 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
                 <div class="bg-white p-8 rounded-[2rem] shadow-md relative">
-                    <i class="fas fa-quote-right text-5xl text-brand-pink/20 absolute top-6 right-6"></i>
+                    <i class="fas fa-quote-right text-5xl text-brand-pink/20 absolute top-6 right-6 pointer-events-none"></i>
                     <p class="text-gray-600 leading-relaxed relative z-10 mb-6 italic">
                         "הייתי על סף קריסה אחרי 8 חודשים של קימות כל שעה. חירות נכנסה לחיינו כמו מלאך. התהליך היה כל כך הגיוני ומכיל, ותוך שבועיים נועם פשוט התחיל לישון לילות שלמים! החזרת לנו את הזוגיות והשפיות."
                     </p>
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center font-bold text-brand-pink">מ</div>
+                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center font-bold text-brand-pink" aria-hidden="true">מ</div>
                         <div>
                             <p class="font-bold text-brand-dark">מיכל ש.</p>
                             <p class="text-sm text-gray-500">אמא של נועם (8 חודשים)</p>
@@ -191,12 +205,12 @@
                 
                 <!-- Testimonial 2 -->
                 <div class="bg-white p-8 rounded-[2rem] shadow-md relative">
-                    <i class="fas fa-quote-right text-5xl text-brand-pink/20 absolute top-6 right-6"></i>
+                    <i class="fas fa-quote-right text-5xl text-brand-pink/20 absolute top-6 right-6 pointer-events-none"></i>
                     <p class="text-gray-600 leading-relaxed relative z-10 mb-6 italic">
                         "חיפשתי יועצת שלא תגיד לי לסגור את הדלת ולתת לה לבכות. חירות הביאה איתה גישה מדהימה שעזרה למאיה ללמוד להירדם ברוגע, כשאני לידה. התמיכה היומיומית הייתה שווה הכל."
                     </p>
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center font-bold text-brand-dark">ד</div>
+                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center font-bold text-brand-dark" aria-hidden="true">ד</div>
                         <div>
                             <p class="font-bold text-brand-dark">דנה ק.</p>
                             <p class="text-sm text-gray-500">אמא של מאיה (שנה ו-2)</p>
@@ -206,12 +220,12 @@
 
                 <!-- Testimonial 3 -->
                 <div class="bg-white p-8 rounded-[2rem] shadow-md relative">
-                    <i class="fas fa-quote-right text-5xl text-brand-pink/20 absolute top-6 right-6"></i>
+                    <i class="fas fa-quote-right text-5xl text-brand-pink/20 absolute top-6 right-6 pointer-events-none"></i>
                     <p class="text-gray-600 leading-relaxed relative z-10 mb-6 italic">
                         "מה שהכי אהבתי זה הזמינות של חירות. היא תמיד הייתה שם לענות על שאלות, להרגיע אותי בימים קשים ולדייק את השעות. ממליצה לכל אמא עייפה פשוט לדבר איתה."
                     </p>
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center font-bold text-purple-600">ש</div>
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center font-bold text-purple-600" aria-hidden="true">ש</div>
                         <div>
                             <p class="font-bold text-brand-dark">שירן ב.</p>
                             <p class="text-sm text-gray-500">אמא של איתי (5 חודשים)</p>
@@ -229,14 +243,18 @@
             <p class="mb-8 text-pink-100 text-lg">
                 השאירי את המייל שלך ואשלח לך חינם מדריך פרקטי עם טיפים שתוכלי להתחיל ליישם כבר הלילה בבית.
             </p>
-            <form class="flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto" onsubmit="event.preventDefault(); alert('המדריך נשלח בהצלחה למייל שלך!');">
-                <input type="email" placeholder="הקלידי את האימייל שלך כאן..." required 
+            <form id="leadForm" class="flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto">
+                <label for="leadEmail" class="sr-only">כתובת אימייל</label>
+                <input type="email" id="leadEmail" placeholder="הקלידי את האימייל שלך כאן..." required 
                        class="px-5 py-4 rounded-xl text-gray-800 w-full focus:outline-none focus:ring-4 focus:ring-pink-300 shadow-inner">
-                <button type="submit" class="bg-brand-dark hover:bg-indigo-950 text-white font-bold py-4 px-8 rounded-xl transition shadow-lg whitespace-nowrap">
+                <button type="submit" class="bg-brand-dark hover:bg-indigo-950 text-white font-bold py-4 px-8 rounded-xl transition shadow-lg whitespace-nowrap focus:outline-none focus:ring-4 focus:ring-indigo-300">
                     שלחי לי את המדריך
                 </button>
             </form>
-            <p class="text-xs text-pink-200 mt-4"><i class="fas fa-lock"></i> המייל שלך שמור אצלי ולא יועבר לאף אחד.</p>
+            <div id="leadSuccess" class="hidden mt-4 bg-green-500 text-white px-4 py-2 rounded-lg font-bold w-max mx-auto shadow-md">
+                <i class="fas fa-check-circle ml-2"></i> המדריך נשלח בהצלחה למייל שלך!
+            </div>
+            <p class="text-xs text-pink-200 mt-4"><i class="fas fa-lock ml-1"></i> המייל שלך שמור אצלי ולא יועבר לאף אחד.</p>
         </div>
     </section>
 
@@ -252,10 +270,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Article 1 -->
-                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group focus-within:ring-2 focus-within:ring-brand-pink">
                     <div class="h-48 bg-indigo-50 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/f3eefc/312e81?text=טקס+שינה')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink">שגרה וטקסים</div>
+                        <!-- Unsplash Image: Baby sleeping -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" role="img" aria-label="תינוק ישן ברוגע"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink shadow-sm">שגרה וטקסים</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
@@ -265,16 +284,18 @@
                             </p>
                         </div>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center text-xs text-gray-500">
-                            <span><i class="far fa-clock"></i> 3 דקות קריאה</span>
+                            <span><i class="far fa-clock ml-1" aria-hidden="true"></i> 3 דקות קריאה</span>
+                            <a href="#" class="text-brand-pink font-bold hover:underline" tabindex="-1">קראי עוד <i class="fas fa-arrow-left text-[10px]"></i></a>
                         </div>
                     </div>
                 </article>
 
                 <!-- Article 2 -->
-                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group focus-within:ring-2 focus-within:ring-brand-pink">
                     <div class="h-48 bg-pink-50 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/fce7f3/db2777?text=סימני+עייפות')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink">סימני עייפות</div>
+                        <!-- Unsplash Image: Cute yawning baby -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" role="img" aria-label="תינוק מפהק"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink shadow-sm">סימני עייפות</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
@@ -284,16 +305,18 @@
                             </p>
                         </div>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center text-xs text-gray-500">
-                            <span><i class="far fa-clock"></i> 4 דקות קריאה</span>
+                            <span><i class="far fa-clock ml-1" aria-hidden="true"></i> 4 דקות קריאה</span>
+                            <a href="#" class="text-brand-pink font-bold hover:underline" tabindex="-1">קראי עוד <i class="fas fa-arrow-left text-[10px]"></i></a>
                         </div>
                     </div>
                 </article>
 
                 <!-- Article 3 -->
-                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group focus-within:ring-2 focus-within:ring-brand-pink">
                     <div class="h-48 bg-purple-50 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/ede9fe/6d28d9?text=סביבת+שינה')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink">סביבת שינה</div>
+                        <!-- Unsplash Image: Cozy dark nursery/crib -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" role="img" aria-label="חדר ילדים רגוע"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink shadow-sm">סביבת שינה</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
@@ -303,35 +326,39 @@
                             </p>
                         </div>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center text-xs text-gray-500">
-                            <span><i class="far fa-clock"></i> 3 דקות קריאה</span>
+                            <span><i class="far fa-clock ml-1" aria-hidden="true"></i> 3 דקות קריאה</span>
+                            <a href="#" class="text-brand-pink font-bold hover:underline" tabindex="-1">קראי עוד <i class="fas fa-arrow-left text-[10px]"></i></a>
                         </div>
                     </div>
                 </article>
 
                 <!-- Article 4 -->
-                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group focus-within:ring-2 focus-within:ring-brand-pink">
                     <div class="h-48 bg-indigo-50 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/e0e7ff/4338ca?text=משבר+4+חודשים')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink">התפתחות</div>
+                        <!-- Unsplash Image: Awake baby -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" role="img" aria-label="תינוק ערני במיטה"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink shadow-sm">התפתחות</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="text-xl font-bold text-brand-dark mb-3 group-hover:text-brand-pink transition-colors">משבר השינה של גיל 4 חודשים</h3>
                             <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                בגיל 4 חודשים שנת התינוק הופכת למחזורית (כמו אצל מבוגרים). אם הוא נרדם רק על הידיים, הוא יתעורר וידרוש ידיים בין כל מחזור. זה השלב המושלם להתחיל ללמד אותו הירדמות עצמאית במיטה.
+                                בגיל 4 חודשים שנת התינוק הופכת למחזורית. אם הוא נרדם רק על הידיים, הוא יתעורר וידרוש ידיים בין כל מחזור. זה השלב המושלם להתחיל ללמד אותו הירדמות עצמאית במיטה.
                             </p>
                         </div>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center text-xs text-gray-500">
-                            <span><i class="far fa-clock"></i> 5 דקות קריאה</span>
+                            <span><i class="far fa-clock ml-1" aria-hidden="true"></i> 5 דקות קריאה</span>
+                            <a href="#" class="text-brand-pink font-bold hover:underline" tabindex="-1">קראי עוד <i class="fas fa-arrow-left text-[10px]"></i></a>
                         </div>
                     </div>
                 </article>
 
                 <!-- Article 5 -->
-                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group lg:col-span-2 xl:col-span-1">
+                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group lg:col-span-2 xl:col-span-1 focus-within:ring-2 focus-within:ring-brand-pink">
                     <div class="h-48 bg-pink-50 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/fae8ff/c026d3?text=התעוררויות+בלילה')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink">התעוררויות</div>
+                        <!-- Unsplash Image: Mom holding baby at night -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1537673156864-5d2c72de7824?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500" role="img" aria-label="אמא מנחמת תינוק"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-pink shadow-sm">התעוררויות</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
@@ -341,7 +368,8 @@
                             </p>
                         </div>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center text-xs text-gray-500">
-                            <span><i class="far fa-clock"></i> 4 דקות קריאה</span>
+                            <span><i class="far fa-clock ml-1" aria-hidden="true"></i> 4 דקות קריאה</span>
+                            <a href="#" class="text-brand-pink font-bold hover:underline" tabindex="-1">קראי עוד <i class="fas fa-arrow-left text-[10px]"></i></a>
                         </div>
                     </div>
                 </article>
@@ -358,12 +386,11 @@
             </div>
             
             <div class="space-y-4">
-                <!-- FAQ 1 -->
                 <details class="group bg-white rounded-2xl shadow-sm border border-transparent hover:border-pink-100 transition-all open:ring-1 open:ring-brand-pink">
-                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-brand-dark text-lg select-none">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 text-brand-dark text-lg select-none focus:outline-none focus:ring-2 focus:ring-brand-pink rounded-2xl">
                         <span>האם התהליך כולל שיטות של "לתת לילד לבכות"?</span>
                         <span class="transition-transform duration-300 group-open:rotate-180 text-brand-pink">
-                            <i class="fas fa-chevron-down"></i>
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
                         </span>
                     </summary>
                     <div class="text-gray-600 px-6 pb-6 pt-2 border-t border-gray-50 mt-2 leading-relaxed">
@@ -371,42 +398,27 @@
                     </div>
                 </details>
                 
-                <!-- FAQ 2 -->
                 <details class="group bg-white rounded-2xl shadow-sm border border-transparent hover:border-pink-100 transition-all open:ring-1 open:ring-brand-pink">
-                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-brand-dark text-lg select-none">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 text-brand-dark text-lg select-none focus:outline-none focus:ring-2 focus:ring-brand-pink rounded-2xl">
                         <span>מאיזה גיל אפשר להתחיל תהליך של ייעוץ שינה?</span>
                         <span class="transition-transform duration-300 group-open:rotate-180 text-brand-pink">
-                            <i class="fas fa-chevron-down"></i>
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
                         </span>
                     </summary>
                     <div class="text-gray-600 px-6 pb-6 pt-2 border-t border-gray-50 mt-2 leading-relaxed">
-                        הקניית הרגלי שינה נכונים ובריאים אפשרית כבר מהיום הראשון (באמצעות ייעוץ בסיסי). עם זאת, תהליך מלא של למידת הירדמות עצמאית מומלץ להתחיל מגיל 5 חודשים, אז התינוק בשל לכך מבחינה פיזיולוגית וקוגניטיבית.
+                        הקניית הרגלי שינה נכונים אפשרית כבר מהיום הראשון. עם זאת, תהליך מלא של למידת הירדמות עצמאית מומלץ להתחיל מגיל 5 חודשים, אז התינוק בשל לכך מבחינה פיזיולוגית וקוגניטיבית.
                     </div>
                 </details>
 
-                <!-- FAQ 3 -->
                 <details class="group bg-white rounded-2xl shadow-sm border border-transparent hover:border-pink-100 transition-all open:ring-1 open:ring-brand-pink">
-                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-brand-dark text-lg select-none">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 text-brand-dark text-lg select-none focus:outline-none focus:ring-2 focus:ring-brand-pink rounded-2xl">
                         <span>כמה זמן נמשך התהליך בדרך כלל?</span>
                         <span class="transition-transform duration-300 group-open:rotate-180 text-brand-pink">
-                            <i class="fas fa-chevron-down"></i>
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
                         </span>
                     </summary>
                     <div class="text-gray-600 px-6 pb-6 pt-2 border-t border-gray-50 mt-2 leading-relaxed">
-                        מכיוון שאנחנו עובדים בגישה הדרגתית ומותאמת לקצב של התינוק, תהליך ממוצע נמשך בין 4 ל-6 שבועות. במהלך הזמן הזה נטפל גם בשנת הלילה וגם בשנות היום (שנ"צים), ונוודא שההרגלים החדשים מתבססים היטב.
-                    </div>
-                </details>
-
-                <!-- FAQ 4 -->
-                <details class="group bg-white rounded-2xl shadow-sm border border-transparent hover:border-pink-100 transition-all open:ring-1 open:ring-brand-pink">
-                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-brand-dark text-lg select-none">
-                        <span>האם אני חייבת להפסיק להניק בלילה?</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-pink">
-                            <i class="fas fa-chevron-down"></i>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 px-6 pb-6 pt-2 border-t border-gray-50 mt-2 leading-relaxed">
-                        כלל וכלל לא. התוכנית נבנית בהתאם למטרות שלך ושל רופא הילדים. אפשר ללמד תינוק להירדם עצמאית בתחילת הלילה ולהמשיך לשלב הנקות יזומות במהלך הלילה בהתאם לגיל ולמשקל שלו. אנחנו רק נפריד בין ההנקה להירדמות.
+                        מכיוון שאנחנו עובדים בגישה הדרגתית, תהליך ממוצע נמשך בין 4 ל-6 שבועות. במהלך הזמן הזה נטפל גם בשנת הלילה וגם בשנות היום (שנ"צים), ונוודא שההרגלים החדשים מתבססים היטב.
                     </div>
                 </details>
             </div>
@@ -415,9 +427,8 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-white relative overflow-hidden">
-        <!-- Decorative Background -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-indigo-50 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-indigo-50 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
 
         <div class="max-w-xl mx-auto px-4 text-center relative z-10">
             <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">מוכנה לחזור לישון?</h2>
@@ -425,42 +436,45 @@
                 השאירי פרטים ואחזור אלייך בהקדם לשיחת היכרות קצרה, ללא עלות וללא התחייבות. נבדוק יחד איך אפשר לעזור למשפחה שלכם.
             </p>
             
-            <form class="space-y-5 bg-brand-light p-8 md:p-10 rounded-[2rem] shadow-xl text-right border border-white" 
-                  onsubmit="event.preventDefault(); alert('ההודעה נשלחה! אחזור אלייך בהקדם.');">
+            <form id="contactForm" class="space-y-5 bg-brand-light p-8 md:p-10 rounded-[2rem] shadow-xl text-right border border-white">
                 <div>
-                    <label class="block text-sm font-bold text-brand-dark mb-2">איך קוראים לך?</label>
+                    <label for="contactName" class="block text-sm font-bold text-brand-dark mb-2">איך קוראים לך?</label>
                     <div class="relative">
-                        <i class="fas fa-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                        <input type="text" required placeholder="שם מלא" 
+                        <i class="fas fa-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
+                        <input type="text" id="contactName" required placeholder="שם מלא" 
                                class="w-full pr-12 pl-4 py-3 border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink shadow-sm bg-white">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-brand-dark mb-2">לאיזה מספר לחזור אלייך?</label>
+                    <label for="contactPhone" class="block text-sm font-bold text-brand-dark mb-2">לאיזה מספר לחזור אלייך?</label>
                     <div class="relative">
-                        <i class="fas fa-phone absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                        <input type="tel" required placeholder="מספר נייד" dir="ltr" class="text-right w-full pr-12 pl-4 py-3 border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink shadow-sm bg-white">
+                        <i class="fas fa-phone absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
+                        <input type="tel" id="contactPhone" required placeholder="מספר נייד" dir="ltr" class="text-right w-full pr-12 pl-4 py-3 border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink shadow-sm bg-white">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-brand-dark mb-2">ספרי לי קצת על הבייבי (גיל ומה הקושי)</label>
-                    <textarea rows="4" required placeholder="לדוגמה: בן 7 חודשים, מתעורר כל שעתיים..." 
+                    <label for="contactDesc" class="block text-sm font-bold text-brand-dark mb-2">ספרי לי קצת על הבייבי (גיל ומה הקושי)</label>
+                    <textarea id="contactDesc" rows="4" required placeholder="לדוגמה: בן 7 חודשים, מתעורר כל שעתיים..." 
                               class="w-full px-4 py-3 border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink shadow-sm bg-white resize-none"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-brand-pink hover:bg-brand-pinkHover text-white font-bold py-4 rounded-xl shadow-lg transition duration-300 text-lg transform hover:-translate-y-1">
-                    שלחי לי פנייה <i class="fas fa-paper-plane mr-2"></i>
+                <button type="submit" class="w-full bg-brand-pink hover:bg-brand-pinkHover text-white font-bold py-4 rounded-xl shadow-lg transition duration-300 text-lg transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-pink-300">
+                    שלחי לי פנייה <i class="fas fa-paper-plane mr-2" aria-hidden="true"></i>
                 </button>
             </form>
+            
+            <div id="contactSuccess" class="hidden mt-6 bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-xl font-bold shadow-sm">
+                <i class="fas fa-heart text-brand-pink ml-2"></i> תודה! ההודעה נשלחה בהצלחה. אחזור אלייך בהקדם.
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-brand-dark text-white pt-16 pb-8 border-t-4 border-brand-pink">
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 text-center md:text-right">
             <!-- Brand -->
-            <div class="text-center md:text-right">
+            <div>
                 <a href="#" class="inline-flex items-center gap-2 text-2xl font-extrabold text-white mb-4">
-                    <i class="fas fa-moon text-brand-pink"></i> חירות
+                    <i class="fas fa-moon text-brand-pink" aria-hidden="true"></i> חירות
                 </a>
                 <p class="text-indigo-200 leading-relaxed">
                     יועצת שינה מוסמכת המלווה אימהות ומשפחות למציאת השקט והרוגע בלילות ובימים, בגישה רכה המותאמת במדויק לצרכי התינוק.
@@ -468,47 +482,129 @@
             </div>
             
             <!-- Quick Links -->
-            <div class="text-center md:text-right">
+            <div>
                 <h4 class="text-lg font-bold text-white mb-4 border-b border-indigo-800 pb-2 inline-block">ניווט מהיר</h4>
                 <ul class="space-y-3 text-indigo-200">
-                    <li><a href="#about" class="hover:text-brand-pink transition">הגישה שלי לייעוץ</a></li>
-                    <li><a href="#testimonials" class="hover:text-brand-pink transition">מה אימהות מספרות?</a></li>
-                    <li><a href="#articles" class="hover:text-brand-pink transition">מאגר המאמרים (בלוג)</a></li>
-                    <li><a href="#faq" class="hover:text-brand-pink transition">שאלות ותשובות נפוצות</a></li>
+                    <li><a href="#about" class="hover:text-brand-pink transition focus:outline-none focus:ring-2 focus:ring-brand-pink rounded">הגישה שלי</a></li>
+                    <li><a href="#testimonials" class="hover:text-brand-pink transition focus:outline-none focus:ring-2 focus:ring-brand-pink rounded">המלצות</a></li>
+                    <li><a href="#articles" class="hover:text-brand-pink transition focus:outline-none focus:ring-2 focus:ring-brand-pink rounded">מאמרים</a></li>
+                    <li><a href="#faq" class="hover:text-brand-pink transition focus:outline-none focus:ring-2 focus:ring-brand-pink rounded">שאלות נפוצות</a></li>
                 </ul>
             </div>
             
             <!-- Social -->
-            <div class="text-center md:text-right">
+            <div>
                 <h4 class="text-lg font-bold text-white mb-4 border-b border-indigo-800 pb-2 inline-block">בואו נשמור על קשר</h4>
-                <p class="text-indigo-200 mb-4">עקבו אחריי ברשתות החברתיות לקבלת טיפים יומיים לשינה טובה יותר.</p>
+                <p class="text-indigo-200 mb-4">עקבו אחריי ברשתות החברתיות לקבלת טיפים יומיים.</p>
                 <div class="flex justify-center md:justify-start gap-4 text-2xl">
-                    <a href="https://facebook.com" target="_blank" aria-label="פייסבוק" class="w-12 h-12 rounded-full bg-indigo-900 flex items-center justify-center text-indigo-200 hover:bg-brand-pink hover:text-white transition duration-300">
-                        <i class="fab fa-facebook-f"></i>
+                    <a href="https://facebook.com" target="_blank" aria-label="פייסבוק של חירות" class="w-12 h-12 rounded-full bg-indigo-900 flex items-center justify-center text-indigo-200 hover:bg-brand-pink hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-pink">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
                     </a>
-                    <a href="https://instagram.com" target="_blank" aria-label="אינסטגרם" class="w-12 h-12 rounded-full bg-indigo-900 flex items-center justify-center text-indigo-200 hover:bg-brand-pink hover:text-white transition duration-300">
-                        <i class="fab fa-instagram"></i>
+                    <a href="https://instagram.com" target="_blank" aria-label="אינסטגרם של חירות" class="w-12 h-12 rounded-full bg-indigo-900 flex items-center justify-center text-indigo-200 hover:bg-brand-pink hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-pink">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
         </div>
         
         <div class="max-w-6xl mx-auto px-4 text-center text-sm text-indigo-400 pt-8 border-t border-indigo-900">
-            © 2026 חירות - ייעוץ שינה לתינוקות ופעוטות. נבנה באהבה למען אימהות עייפות.
+            © 2026 חירות - ייעוץ שינה לתינוקות ופעוטות. נבנה באהבה למען אימהות.
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
+    <!-- Floating WhatsApp Button (Right side) -->
     <a href="https://wa.me/972500000000?text=היי%20חירות,%20הגעתי%20מהאתר%20ואשמח%20לקבוע%20שיחת%20היכרות" 
        target="_blank" 
-       class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 bg-[#25d366] hover:bg-[#20ba5a] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-110 z-50 group"
+       class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 bg-[#25d366] hover:bg-[#20ba5a] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-110 z-50 group focus:outline-none focus:ring-4 focus:ring-green-300"
        aria-label="שלחו הודעה בוואטסאפ">
-        <i class="fab fa-whatsapp text-4xl group-hover:animate-bounce"></i>
+        <i class="fab fa-whatsapp text-3xl md:text-4xl group-hover:animate-bounce" aria-hidden="true"></i>
         <!-- Tooltip -->
-        <span class="absolute right-20 bg-white text-gray-800 text-sm font-bold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+        <span class="absolute right-[110%] bg-white text-gray-800 text-sm font-bold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none hidden md:block">
             צריכה עזרה? בואי נדבר! 💬
         </span>
     </a>
 
+    <!-- Accessibility Widget (Left side) -->
+    <div class="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-50 font-sans">
+        <!-- Accessibility Menu -->
+        <div id="a11yMenu" class="hidden absolute bottom-16 left-0 w-48 bg-white border border-gray-200 rounded-2xl shadow-2xl p-4 flex flex-col gap-3 text-right">
+            <h3 class="font-bold text-gray-800 border-b pb-2 text-sm text-center">התאמת נגישות</h3>
+            <button onclick="toggleA11yContrast()" class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-3 rounded-lg font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <i class="fas fa-adjust ml-2"></i> ניגודיות גבוהה
+            </button>
+            <button onclick="toggleA11yText()" class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-3 rounded-lg font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <i class="fas fa-search-plus ml-2"></i> הגדלת טקסט
+            </button>
+            <button onclick="toggleA11yLinks()" class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-3 rounded-lg font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <i class="fas fa-link ml-2"></i> הדגשת קישורים
+            </button>
+            <button onclick="resetA11y()" class="text-sm text-red-500 hover:bg-red-50 py-1 px-3 rounded-lg font-bold transition mt-2 border border-red-200 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <i class="fas fa-undo ml-1"></i> איפוס הגדרות
+            </button>
+        </div>
+        
+        <!-- Accessibility Toggle Button -->
+        <button id="a11yBtn" aria-label="פתיחת תפריט נגישות" aria-haspopup="true" aria-expanded="false" 
+                class="bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-300">
+            <i class="fab fa-accessible-icon text-2xl md:text-3xl" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <!-- Interactive Scripts (Vanilla JS, No Alerts) -->
+    <script>
+        // Form submission handling (Replacing Alerts with inline messages)
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('leadSuccess').classList.remove('hidden');
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('contactSuccess').classList.remove('hidden');
+        });
+
+        // Accessibility Logic
+        const a11yBtn = document.getElementById('a11yBtn');
+        const a11yMenu = document.getElementById('a11yMenu');
+        
+        a11yBtn.addEventListener('click', function() {
+            const isHidden = a11yMenu.classList.contains('hidden');
+            a11yMenu.classList.toggle('hidden');
+            a11yBtn.setAttribute('aria-expanded', !isHidden);
+        });
+
+        // Close A11y menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!a11yBtn.contains(event.target) && !a11yMenu.contains(event.target)) {
+                a11yMenu.classList.add('hidden');
+                a11yBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        function toggleA11yContrast() {
+            document.body.classList.toggle('a11y-high-contrast');
+        }
+
+        function toggleA11yText() {
+            // Toggling between 100% and 120% base font size
+            if (document.documentElement.style.fontSize === '120%') {
+                document.documentElement.style.fontSize = '100%';
+            } else {
+                document.documentElement.style.fontSize = '120%';
+            }
+        }
+
+        function toggleA11yLinks() {
+            document.body.classList.toggle('a11y-highlight-links');
+        }
+
+        function resetA11y() {
+            document.body.classList.remove('a11y-high-contrast', 'a11y-highlight-links');
+            document.documentElement.style.fontSize = '100%';
+            a11yMenu.classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
